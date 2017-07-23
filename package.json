@@ -1,0 +1,21 @@
+{
+  "name": "chat-example",
+  "version": "1.0.0",
+  "description": "A chat example to showcase how to use `socket.io` with a static `express` server with `async` for control flow.",
+  "main": "bot.js",
+  "repository": "",
+  "author": "Binh Tran <mo.eweda@gmail.com>",
+  "scripts": "nodemon bot.js",
+  "dependencies": {
+    "async": "~0.2.8",
+    "babel": "^6.23.0",
+    "discord": "^0.8.2",
+    "discord.io": "^2.5.1",
+    "discordie": "^0.11.0",
+    "express": "~3.2.4",
+    "gulp": "^3.9.1",
+    "request": "^2.81.0",
+    "socket.io": "~0.9.14",
+    "winston": "^2.3.1"
+  }
+}

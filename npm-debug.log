@@ -1,0 +1,420 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/ubuntu/.nvm/versions/node/v4.7.3/bin/node',
+1 verbose cli   '/home/ubuntu/.nvm/versions/node/v4.7.3/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'delay',
+1 verbose cli   '--save' ]
+2 info using npm@2.15.11
+3 info using node@v4.7.3
+4 verbose install initial load of /home/ubuntu/workspace/package.json
+5 warn package.json chat-example@1.0.0 No repository field.
+6 warn package.json chat-example@1.0.0 scripts must be an object
+7 warn package.json chat-example@1.0.0 No license field.
+8 verbose installManyTop reading scoped package data from /home/ubuntu/workspace/node_modules/async/package.json
+9 verbose installManyTop reading scoped package data from /home/ubuntu/workspace/node_modules/babel/package.json
+10 verbose installManyTop reading scoped package data from /home/ubuntu/workspace/node_modules/bufferutil/package.json
+11 verbose installManyTop reading scoped package data from /home/ubuntu/workspace/node_modules/discord/package.json
+12 verbose installManyTop reading scoped package data from /home/ubuntu/workspace/node_modules/discord.io/package.json
+13 verbose installManyTop reading scoped package data from /home/ubuntu/workspace/node_modules/discord.js/package.json
+14 verbose installManyTop reading scoped package data from /home/ubuntu/workspace/node_modules/discordie/package.json
+15 verbose installManyTop reading scoped package data from /home/ubuntu/workspace/node_modules/erlpack/package.json
+16 verbose installManyTop reading scoped package data from /home/ubuntu/workspace/node_modules/express/package.json
+17 verbose installManyTop reading scoped package data from /home/ubuntu/workspace/node_modules/gulp/package.json
+18 verbose installManyTop reading scoped package data from /home/ubuntu/workspace/node_modules/libsodium-wrappers/package.json
+19 verbose installManyTop reading scoped package data from /home/ubuntu/workspace/node_modules/node-opus/package.json
+20 verbose installManyTop reading scoped package data from /home/ubuntu/workspace/node_modules/opusscript/package.json
+21 verbose installManyTop reading scoped package data from /home/ubuntu/workspace/node_modules/request/package.json
+22 verbose installManyTop reading scoped package data from /home/ubuntu/workspace/node_modules/sleep/package.json
+23 verbose installManyTop reading scoped package data from /home/ubuntu/workspace/node_modules/socket.io/package.json
+24 verbose installManyTop reading scoped package data from /home/ubuntu/workspace/node_modules/sodium/package.json
+25 verbose installManyTop reading scoped package data from /home/ubuntu/workspace/node_modules/uws/package.json
+26 verbose installManyTop reading scoped package data from /home/ubuntu/workspace/node_modules/winston/package.json
+27 info package.json async@0.2.10 No license field.
+28 info package.json express@3.2.6 No license field.
+29 info package.json discord@0.8.2 No license field.
+30 info package.json socket.io@0.9.17 No license field.
+31 verbose readDependencies loading dependencies from /home/ubuntu/workspace/package.json
+32 silly cache add args [ 'delay', null ]
+33 verbose cache add spec delay
+34 silly cache add parsed spec Result {
+34 silly cache add   raw: 'delay',
+34 silly cache add   scope: null,
+34 silly cache add   name: 'delay',
+34 silly cache add   rawSpec: '',
+34 silly cache add   spec: 'latest',
+34 silly cache add   type: 'tag' }
+35 silly addNamed delay@latest
+36 verbose addNamed "latest" is being treated as a dist-tag for delay
+37 info addNameTag [ 'delay', 'latest' ]
+38 silly mapToRegistry name delay
+39 silly mapToRegistry using default registry
+40 silly mapToRegistry registry https://registry.npmjs.org/
+41 silly mapToRegistry data Result {
+41 silly mapToRegistry   raw: 'delay',
+41 silly mapToRegistry   scope: null,
+41 silly mapToRegistry   name: 'delay',
+41 silly mapToRegistry   rawSpec: '',
+41 silly mapToRegistry   spec: 'latest',
+41 silly mapToRegistry   type: 'tag' }
+42 silly mapToRegistry uri https://registry.npmjs.org/delay
+43 verbose addNameTag registry:https://registry.npmjs.org/delay not in flight; fetching
+44 verbose request uri https://registry.npmjs.org/delay
+45 verbose request no auth needed
+46 info attempt registry request try #1 at 2:13:26 AM
+47 verbose request id 2a4fb0c36b6606f7
+48 http request GET https://registry.npmjs.org/delay
+49 http 200 https://registry.npmjs.org/delay
+50 verbose headers { server: 'nginx/1.10.1',
+50 verbose headers   'content-type': 'application/json',
+50 verbose headers   'last-modified': 'Wed, 29 Mar 2017 09:14:00 GMT',
+50 verbose headers   etag: 'W/"58db7ad8-2ca6"',
+50 verbose headers   'content-encoding': 'gzip',
+50 verbose headers   'cache-control': 'max-age=300',
+50 verbose headers   'content-length': '2582',
+50 verbose headers   'accept-ranges': 'bytes',
+50 verbose headers   date: 'Sun, 23 Jul 2017 02:13:26 GMT',
+50 verbose headers   via: '1.1 varnish',
+50 verbose headers   age: '0',
+50 verbose headers   connection: 'keep-alive',
+50 verbose headers   'x-served-by': 'cache-ord1727-ORD',
+50 verbose headers   'x-cache': 'MISS',
+50 verbose headers   'x-cache-hits': '0',
+50 verbose headers   'x-timer': 'S1500776006.215789,VS0,VE129',
+50 verbose headers   vary: 'Accept-Encoding, Accept' }
+51 silly get cb [ 200,
+51 silly get   { server: 'nginx/1.10.1',
+51 silly get     'content-type': 'application/json',
+51 silly get     'last-modified': 'Wed, 29 Mar 2017 09:14:00 GMT',
+51 silly get     etag: 'W/"58db7ad8-2ca6"',
+51 silly get     'content-encoding': 'gzip',
+51 silly get     'cache-control': 'max-age=300',
+51 silly get     'content-length': '2582',
+51 silly get     'accept-ranges': 'bytes',
+51 silly get     date: 'Sun, 23 Jul 2017 02:13:26 GMT',
+51 silly get     via: '1.1 varnish',
+51 silly get     age: '0',
+51 silly get     connection: 'keep-alive',
+51 silly get     'x-served-by': 'cache-ord1727-ORD',
+51 silly get     'x-cache': 'MISS',
+51 silly get     'x-cache-hits': '0',
+51 silly get     'x-timer': 'S1500776006.215789,VS0,VE129',
+51 silly get     vary: 'Accept-Encoding, Accept' } ]
+52 verbose get saving delay to /home/ubuntu/.npm/registry.npmjs.org/delay/.cache.json
+53 verbose correctMkdir /home/ubuntu/.npm correctMkdir not in flight; initializing
+54 silly addNameTag next cb for delay with tag latest
+55 silly addNamed delay@2.0.0
+56 verbose addNamed "2.0.0" is a plain semver version for delay
+57 silly mapToRegistry name delay
+58 silly mapToRegistry using default registry
+59 silly mapToRegistry registry https://registry.npmjs.org/
+60 silly mapToRegistry data Result {
+60 silly mapToRegistry   raw: 'delay',
+60 silly mapToRegistry   scope: null,
+60 silly mapToRegistry   name: 'delay',
+60 silly mapToRegistry   rawSpec: '',
+60 silly mapToRegistry   spec: 'latest',
+60 silly mapToRegistry   type: 'tag' }
+61 silly mapToRegistry uri https://registry.npmjs.org/delay
+62 verbose addRemoteTarball https://registry.npmjs.org/delay/-/delay-2.0.0.tgz not in flight; adding
+63 verbose addRemoteTarball [ 'https://registry.npmjs.org/delay/-/delay-2.0.0.tgz',
+63 verbose addRemoteTarball   '9112eadc03e4ec7e00297337896f273bbd91fae5' ]
+64 info retry fetch attempt 1 at 2:13:26 AM
+65 info attempt registry request try #1 at 2:13:26 AM
+66 http fetch GET https://registry.npmjs.org/delay/-/delay-2.0.0.tgz
+67 http fetch 200 https://registry.npmjs.org/delay/-/delay-2.0.0.tgz
+68 silly fetchAndShaCheck shasum 9112eadc03e4ec7e00297337896f273bbd91fae5
+69 verbose addTmpTarball /tmp/npm-27983-20a7fa53/registry.npmjs.org/delay/-/delay-2.0.0.tgz not in flight; adding
+70 verbose addTmpTarball already have metadata; skipping unpack for delay@2.0.0
+71 verbose correctMkdir /home/ubuntu/.npm correctMkdir not in flight; initializing
+72 silly cache afterAdd delay@2.0.0
+73 verbose afterAdd /home/ubuntu/.npm/delay/2.0.0/package/package.json not in flight; writing
+74 verbose correctMkdir /home/ubuntu/.npm correctMkdir not in flight; initializing
+75 verbose afterAdd /home/ubuntu/.npm/delay/2.0.0/package/package.json written
+76 silly install resolved [ { name: 'delay',
+76 silly install resolved     version: '2.0.0',
+76 silly install resolved     description: 'Delay a promise a specified amount of time',
+76 silly install resolved     license: 'MIT',
+76 silly install resolved     repository:
+76 silly install resolved      { type: 'git',
+76 silly install resolved        url: 'git+https://github.com/sindresorhus/delay.git' },
+76 silly install resolved     author:
+76 silly install resolved      { name: 'Sindre Sorhus',
+76 silly install resolved        email: 'sindresorhus@gmail.com',
+76 silly install resolved        url: 'sindresorhus.com' },
+76 silly install resolved     engines: { node: '>=4' },
+76 silly install resolved     scripts: { test: 'xo && ava' },
+76 silly install resolved     files: [ 'index.js' ],
+76 silly install resolved     keywords:
+76 silly install resolved      [ 'promise',
+76 silly install resolved        'resolve',
+76 silly install resolved        'delay',
+76 silly install resolved        'defer',
+76 silly install resolved        'wait',
+76 silly install resolved        'stall',
+76 silly install resolved        'timeout',
+76 silly install resolved        'settimeout',
+76 silly install resolved        'event',
+76 silly install resolved        'loop',
+76 silly install resolved        'next',
+76 silly install resolved        'tick',
+76 silly install resolved        'delay',
+76 silly install resolved        'async',
+76 silly install resolved        'await',
+76 silly install resolved        'promises',
+76 silly install resolved        'bluebird' ],
+76 silly install resolved     dependencies: { 'p-defer': '^1.0.0' },
+76 silly install resolved     devDependencies:
+76 silly install resolved      { ava: '*',
+76 silly install resolved        bluebird: '^3.3.5',
+76 silly install resolved        'in-range': '^1.0.0',
+76 silly install resolved        'loud-rejection': '^1.3.0',
+76 silly install resolved        'time-span': '^1.0.0',
+76 silly install resolved        xo: '^0.16.0' },
+76 silly install resolved     gitHead: '1517859e3a2cd4ee2b16c57ff22b1c94591ec192',
+76 silly install resolved     bugs: { url: 'https://github.com/sindresorhus/delay/issues' },
+76 silly install resolved     homepage: 'https://github.com/sindresorhus/delay#readme',
+76 silly install resolved     _id: 'delay@2.0.0',
+76 silly install resolved     _shasum: '9112eadc03e4ec7e00297337896f273bbd91fae5',
+76 silly install resolved     _from: 'delay@latest',
+76 silly install resolved     _npmVersion: '2.15.11',
+76 silly install resolved     _nodeVersion: '4.7.3',
+76 silly install resolved     _npmUser: { name: 'sindresorhus', email: 'sindresorhus@gmail.com' },
+76 silly install resolved     dist:
+76 silly install resolved      { shasum: '9112eadc03e4ec7e00297337896f273bbd91fae5',
+76 silly install resolved        tarball: 'https://registry.npmjs.org/delay/-/delay-2.0.0.tgz' },
+76 silly install resolved     maintainers: [ [Object], [Object] ],
+76 silly install resolved     _npmOperationalInternal:
+76 silly install resolved      { host: 'packages-12-west.internal.npmjs.com',
+76 silly install resolved        tmp: 'tmp/delay-2.0.0.tgz_1490191009624_0.6713550852146' },
+76 silly install resolved     directories: {},
+76 silly install resolved     _resolved: 'https://registry.npmjs.org/delay/-/delay-2.0.0.tgz' } ]
+77 info install delay@2.0.0 into /home/ubuntu/workspace
+78 info installOne delay@2.0.0
+79 verbose installOne of delay to /home/ubuntu/workspace not in flight; installing
+80 verbose correctMkdir /home/ubuntu/.npm/_locks correctMkdir not in flight; initializing
+81 verbose lock using /home/ubuntu/.npm/_locks/delay-6bba06289cdd2758.lock for /home/ubuntu/workspace/node_modules/delay
+82 silly install write writing delay 2.0.0 to /home/ubuntu/workspace/node_modules/delay
+83 verbose unbuild node_modules/delay
+84 silly gentlyRm /home/ubuntu/workspace/node_modules/delay is being purged from base /home/ubuntu/workspace
+85 verbose gentlyRm don't care about contents; nuking /home/ubuntu/workspace/node_modules/delay
+86 verbose tar unpack /home/ubuntu/.npm/delay/2.0.0/package.tgz
+87 verbose tar unpacking to /home/ubuntu/workspace/node_modules/delay
+88 silly gentlyRm /home/ubuntu/workspace/node_modules/delay is being purged
+89 verbose gentlyRm don't care about contents; nuking /home/ubuntu/workspace/node_modules/delay
+90 silly gunzTarPerm modes [ '755', '644' ]
+91 silly gunzTarPerm extractEntry package.json
+92 silly gunzTarPerm extractEntry index.js
+93 silly gunzTarPerm extractEntry license
+94 silly gunzTarPerm extractEntry readme.md
+95 verbose write writing to /home/ubuntu/workspace/node_modules/delay/package.json
+96 info preinstall delay@2.0.0
+97 verbose readDependencies loading dependencies from /home/ubuntu/workspace/node_modules/delay/package.json
+98 silly prepareForInstallMany adding p-defer@^1.0.0 from delay dependencies
+99 verbose readDependencies loading dependencies from /home/ubuntu/workspace/node_modules/delay/package.json
+100 silly cache add args [ 'p-defer@^1.0.0', null ]
+101 verbose cache add spec p-defer@^1.0.0
+102 silly cache add parsed spec Result {
+102 silly cache add   raw: 'p-defer@^1.0.0',
+102 silly cache add   scope: null,
+102 silly cache add   name: 'p-defer',
+102 silly cache add   rawSpec: '^1.0.0',
+102 silly cache add   spec: '>=1.0.0 <2.0.0',
+102 silly cache add   type: 'range' }
+103 silly addNamed p-defer@>=1.0.0 <2.0.0
+104 verbose addNamed ">=1.0.0 <2.0.0" is a valid semver range for p-defer
+105 silly addNameRange { name: 'p-defer', range: '>=1.0.0 <2.0.0', hasData: false }
+106 silly mapToRegistry name p-defer
+107 silly mapToRegistry using default registry
+108 silly mapToRegistry registry https://registry.npmjs.org/
+109 silly mapToRegistry data Result {
+109 silly mapToRegistry   raw: 'p-defer',
+109 silly mapToRegistry   scope: null,
+109 silly mapToRegistry   name: 'p-defer',
+109 silly mapToRegistry   rawSpec: '',
+109 silly mapToRegistry   spec: 'latest',
+109 silly mapToRegistry   type: 'tag' }
+110 silly mapToRegistry uri https://registry.npmjs.org/p-defer
+111 verbose addNameRange registry:https://registry.npmjs.org/p-defer not in flight; fetching
+112 verbose request uri https://registry.npmjs.org/p-defer
+113 verbose request no auth needed
+114 info attempt registry request try #1 at 2:13:26 AM
+115 http request GET https://registry.npmjs.org/p-defer
+116 http 200 https://registry.npmjs.org/p-defer
+117 verbose headers { server: 'nginx/1.10.1',
+117 verbose headers   'content-type': 'application/json',
+117 verbose headers   'last-modified': 'Wed, 05 Jul 2017 06:17:26 GMT',
+117 verbose headers   etag: 'W/"595c8476-c65"',
+117 verbose headers   'content-encoding': 'gzip',
+117 verbose headers   'cache-control': 'max-age=300',
+117 verbose headers   'content-length': '1301',
+117 verbose headers   'accept-ranges': 'bytes',
+117 verbose headers   date: 'Sun, 23 Jul 2017 02:13:26 GMT',
+117 verbose headers   via: '1.1 varnish',
+117 verbose headers   age: '0',
+117 verbose headers   connection: 'keep-alive',
+117 verbose headers   'x-served-by': 'cache-ord1727-ORD',
+117 verbose headers   'x-cache': 'MISS',
+117 verbose headers   'x-cache-hits': '0',
+117 verbose headers   'x-timer': 'S1500776006.490441,VS0,VE122',
+117 verbose headers   vary: 'Accept-Encoding, Accept' }
+118 silly get cb [ 200,
+118 silly get   { server: 'nginx/1.10.1',
+118 silly get     'content-type': 'application/json',
+118 silly get     'last-modified': 'Wed, 05 Jul 2017 06:17:26 GMT',
+118 silly get     etag: 'W/"595c8476-c65"',
+118 silly get     'content-encoding': 'gzip',
+118 silly get     'cache-control': 'max-age=300',
+118 silly get     'content-length': '1301',
+118 silly get     'accept-ranges': 'bytes',
+118 silly get     date: 'Sun, 23 Jul 2017 02:13:26 GMT',
+118 silly get     via: '1.1 varnish',
+118 silly get     age: '0',
+118 silly get     connection: 'keep-alive',
+118 silly get     'x-served-by': 'cache-ord1727-ORD',
+118 silly get     'x-cache': 'MISS',
+118 silly get     'x-cache-hits': '0',
+118 silly get     'x-timer': 'S1500776006.490441,VS0,VE122',
+118 silly get     vary: 'Accept-Encoding, Accept' } ]
+119 verbose get saving p-defer to /home/ubuntu/.npm/registry.npmjs.org/p-defer/.cache.json
+120 verbose correctMkdir /home/ubuntu/.npm correctMkdir not in flight; initializing
+121 silly addNameRange number 2 { name: 'p-defer', range: '>=1.0.0 <2.0.0', hasData: true }
+122 silly addNameRange versions [ 'p-defer', [ '1.0.0' ] ]
+123 silly addNamed p-defer@1.0.0
+124 verbose addNamed "1.0.0" is a plain semver version for p-defer
+125 silly mapToRegistry name p-defer
+126 silly mapToRegistry using default registry
+127 silly mapToRegistry registry https://registry.npmjs.org/
+128 silly mapToRegistry data Result {
+128 silly mapToRegistry   raw: 'p-defer',
+128 silly mapToRegistry   scope: null,
+128 silly mapToRegistry   name: 'p-defer',
+128 silly mapToRegistry   rawSpec: '',
+128 silly mapToRegistry   spec: 'latest',
+128 silly mapToRegistry   type: 'tag' }
+129 silly mapToRegistry uri https://registry.npmjs.org/p-defer
+130 verbose addRemoteTarball https://registry.npmjs.org/p-defer/-/p-defer-1.0.0.tgz not in flight; adding
+131 verbose addRemoteTarball [ 'https://registry.npmjs.org/p-defer/-/p-defer-1.0.0.tgz',
+131 verbose addRemoteTarball   '9f6eb182f6c9aa8cd743004a7d4f96b196b0fb0c' ]
+132 info retry fetch attempt 1 at 2:13:26 AM
+133 info attempt registry request try #1 at 2:13:26 AM
+134 http fetch GET https://registry.npmjs.org/p-defer/-/p-defer-1.0.0.tgz
+135 http fetch 200 https://registry.npmjs.org/p-defer/-/p-defer-1.0.0.tgz
+136 silly fetchAndShaCheck shasum 9f6eb182f6c9aa8cd743004a7d4f96b196b0fb0c
+137 verbose addTmpTarball /tmp/npm-27983-20a7fa53/registry.npmjs.org/p-defer/-/p-defer-1.0.0.tgz not in flight; adding
+138 verbose addTmpTarball already have metadata; skipping unpack for p-defer@1.0.0
+139 verbose correctMkdir /home/ubuntu/.npm correctMkdir not in flight; initializing
+140 silly cache afterAdd p-defer@1.0.0
+141 verbose afterAdd /home/ubuntu/.npm/p-defer/1.0.0/package/package.json not in flight; writing
+142 verbose correctMkdir /home/ubuntu/.npm correctMkdir not in flight; initializing
+143 verbose afterAdd /home/ubuntu/.npm/p-defer/1.0.0/package/package.json written
+144 silly install resolved [ { name: 'p-defer',
+144 silly install resolved     version: '1.0.0',
+144 silly install resolved     description: 'Create a deferred promise',
+144 silly install resolved     license: 'MIT',
+144 silly install resolved     repository:
+144 silly install resolved      { type: 'git',
+144 silly install resolved        url: 'git+https://github.com/sindresorhus/p-defer.git' },
+144 silly install resolved     author:
+144 silly install resolved      { name: 'Sindre Sorhus',
+144 silly install resolved        email: 'sindresorhus@gmail.com',
+144 silly install resolved        url: 'sindresorhus.com' },
+144 silly install resolved     engines: { node: '>=4' },
+144 silly install resolved     scripts: { test: 'xo && ava' },
+144 silly install resolved     files: [ 'index.js' ],
+144 silly install resolved     keywords:
+144 silly install resolved      [ 'promise',
+144 silly install resolved        'defer',
+144 silly install resolved        'deferred',
+144 silly install resolved        'resolve',
+144 silly install resolved        'reject',
+144 silly install resolved        'lazy',
+144 silly install resolved        'later',
+144 silly install resolved        'async',
+144 silly install resolved        'await',
+144 silly install resolved        'promises',
+144 silly install resolved        'bluebird' ],
+144 silly install resolved     devDependencies: { ava: '*', xo: '*' },
+144 silly install resolved     xo: { esnext: true },
+144 silly install resolved     gitHead: '31911e0cba4c1143daef9c3ab696d3c882402c3b',
+144 silly install resolved     bugs: { url: 'https://github.com/sindresorhus/p-defer/issues' },
+144 silly install resolved     homepage: 'https://github.com/sindresorhus/p-defer#readme',
+144 silly install resolved     _id: 'p-defer@1.0.0',
+144 silly install resolved     _shasum: '9f6eb182f6c9aa8cd743004a7d4f96b196b0fb0c',
+144 silly install resolved     _from: 'p-defer@>=1.0.0 <2.0.0',
+144 silly install resolved     _npmVersion: '2.15.9',
+144 silly install resolved     _nodeVersion: '4.6.0',
+144 silly install resolved     _npmUser: { name: 'sindresorhus', email: 'sindresorhus@gmail.com' },
+144 silly install resolved     dist:
+144 silly install resolved      { shasum: '9f6eb182f6c9aa8cd743004a7d4f96b196b0fb0c',
+144 silly install resolved        tarball: 'https://registry.npmjs.org/p-defer/-/p-defer-1.0.0.tgz' },
+144 silly install resolved     maintainers: [ [Object] ],
+144 silly install resolved     _npmOperationalInternal:
+144 silly install resolved      { host: 'packages-12-west.internal.npmjs.com',
+144 silly install resolved        tmp: 'tmp/p-defer-1.0.0.tgz_1477026871661_0.6250647243577987' },
+144 silly install resolved     directories: {},
+144 silly install resolved     _resolved: 'https://registry.npmjs.org/p-defer/-/p-defer-1.0.0.tgz' } ]
+145 info install p-defer@1.0.0 into /home/ubuntu/workspace/node_modules/delay
+146 info installOne p-defer@1.0.0
+147 verbose installOne of p-defer to /home/ubuntu/workspace/node_modules/delay not in flight; installing
+148 verbose correctMkdir /home/ubuntu/.npm/_locks correctMkdir not in flight; initializing
+149 verbose lock using /home/ubuntu/.npm/_locks/p-defer-1409de23e04f92c9.lock for /home/ubuntu/workspace/node_modules/delay/node_modules/p-defer
+150 silly install write writing p-defer 1.0.0 to /home/ubuntu/workspace/node_modules/delay/node_modules/p-defer
+151 verbose unbuild node_modules/delay/node_modules/p-defer
+152 silly gentlyRm /home/ubuntu/workspace/node_modules/delay/node_modules/p-defer is being purged from base /home/ubuntu/workspace
+153 verbose gentlyRm don't care about contents; nuking /home/ubuntu/workspace/node_modules/delay/node_modules/p-defer
+154 verbose tar unpack /home/ubuntu/.npm/p-defer/1.0.0/package.tgz
+155 verbose tar unpacking to /home/ubuntu/workspace/node_modules/delay/node_modules/p-defer
+156 silly gentlyRm /home/ubuntu/workspace/node_modules/delay/node_modules/p-defer is being purged
+157 verbose gentlyRm don't care about contents; nuking /home/ubuntu/workspace/node_modules/delay/node_modules/p-defer
+158 silly gunzTarPerm modes [ '755', '644' ]
+159 silly gunzTarPerm extractEntry package.json
+160 silly gunzTarPerm extractEntry index.js
+161 silly gunzTarPerm extractEntry license
+162 silly gunzTarPerm extractEntry readme.md
+163 verbose write writing to /home/ubuntu/workspace/node_modules/delay/node_modules/p-defer/package.json
+164 info preinstall p-defer@1.0.0
+165 verbose readDependencies loading dependencies from /home/ubuntu/workspace/node_modules/delay/node_modules/p-defer/package.json
+166 verbose readDependencies loading dependencies from /home/ubuntu/workspace/node_modules/delay/node_modules/p-defer/package.json
+167 silly install resolved []
+168 verbose about to build /home/ubuntu/workspace/node_modules/delay/node_modules/p-defer
+169 info build /home/ubuntu/workspace/node_modules/delay/node_modules/p-defer
+170 info linkStuff p-defer@1.0.0
+171 silly linkStuff p-defer@1.0.0 has /home/ubuntu/workspace/node_modules/delay/node_modules as its parent node_modules
+172 verbose linkBins p-defer@1.0.0
+173 verbose linkMans p-defer@1.0.0
+174 verbose rebuildBundles p-defer@1.0.0
+175 info install p-defer@1.0.0
+176 info postinstall p-defer@1.0.0
+177 verbose unlock done using /home/ubuntu/.npm/_locks/p-defer-1409de23e04f92c9.lock for /home/ubuntu/workspace/node_modules/delay/node_modules/p-defer
+178 verbose about to build /home/ubuntu/workspace/node_modules/delay
+179 info build /home/ubuntu/workspace/node_modules/delay
+180 info linkStuff delay@2.0.0
+181 silly linkStuff delay@2.0.0 has /home/ubuntu/workspace/node_modules as its parent node_modules
+182 verbose linkBins delay@2.0.0
+183 verbose linkMans delay@2.0.0
+184 verbose rebuildBundles delay@2.0.0
+185 verbose rebuildBundles [ 'p-defer' ]
+186 info install delay@2.0.0
+187 info postinstall delay@2.0.0
+188 verbose unlock done using /home/ubuntu/.npm/_locks/delay-6bba06289cdd2758.lock for /home/ubuntu/workspace/node_modules/delay
+189 verbose validateInstall loading /home/ubuntu/workspace/package.json for validation
+190 verbose stack Error: The package erlpack@0.1.0 does not satisfy its siblings' peerDependencies requirements!
+190 verbose stack     at /home/ubuntu/.nvm/versions/node/v4.7.3/lib/node_modules/npm/lib/install.js:125:32
+190 verbose stack     at /home/ubuntu/.nvm/versions/node/v4.7.3/lib/node_modules/npm/lib/install.js:268:7
+190 verbose stack     at /home/ubuntu/.nvm/versions/node/v4.7.3/lib/node_modules/npm/node_modules/read-installed/read-installed.js:142:5
+190 verbose stack     at /home/ubuntu/.nvm/versions/node/v4.7.3/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+190 verbose stack     at cb (/home/ubuntu/.nvm/versions/node/v4.7.3/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+190 verbose stack     at /home/ubuntu/.nvm/versions/node/v4.7.3/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+190 verbose stack     at cb (/home/ubuntu/.nvm/versions/node/v4.7.3/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+190 verbose stack     at /home/ubuntu/.nvm/versions/node/v4.7.3/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+190 verbose stack     at cb (/home/ubuntu/.nvm/versions/node/v4.7.3/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+190 verbose stack     at /home/ubuntu/.nvm/versions/node/v4.7.3/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+191 verbose cwd /home/ubuntu/workspace
+192 error Linux 4.9.17-c9
+193 error argv "/home/ubuntu/.nvm/versions/node/v4.7.3/bin/node" "/home/ubuntu/.nvm/versions/node/v4.7.3/bin/npm" "install" "delay" "--save"
+194 error node v4.7.3
+195 error npm  v2.15.11
+196 error code EPEERINVALID
+197 error peerinvalid The package erlpack@0.1.0 does not satisfy its siblings' peerDependencies requirements!
+197 error peerinvalid Peer discord.js@11.1.0 wants erlpack@hammerandchisel/erlpack
+198 verbose exit [ 1, true ]

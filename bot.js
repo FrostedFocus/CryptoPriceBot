@@ -33,7 +33,7 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
         e.message.channel.sendMessage('PONG');
     }
 });*/
-var help = ['COMMANDS: `.eth`, `.ltc`, `.btc`, `.btc/eth/ltc<gdax,bfx>`, `.price <ticker>`, `.prices <bfx/gdax>`'];
+var help = ['COMMANDS: `.eth`, `.ltc`, `.btc`, `.btc/eth/ltc<gdax,bfx>`, `.price <ticker>`, `.p <bfx/gdax>`'];
 
 //Let's change some settings!
 logger.remove(logger.transports.Console);   
@@ -81,9 +81,9 @@ bot.setPresence({
 //In this function we're going to add our commands.
 bot.on("message", function (user, userID, channelID, message, rawEvent) {
     if (message.substring(0, 1) == ".") {
-        var arguments = message.substring(1).split(" ");
-        var command = arguments[0].toLowerCase();
-        arguments = arguments.splice(1);
+        var argument = message.substring(1).split(" ");
+        var command = argument[0].toLowerCase();
+        argument = argument.splice(1);
 
         if (command == "ping") {//If the user posts '!ping' we'll do something!
             bot.sendMessage({ //We're going to send a message!
@@ -136,12 +136,13 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
            
         }
         
+        /*Simple read....
         if (command == "eth") {//If the user posts '!ping' we'll do something!
             var msg = "`ETH: ";
            var url = 'https://api.cryptowat.ch/markets/gdax/ethusd/price';
-            if(arguments[0]=='bfx')
+            if(argument[0]=='bfx')
             var url = 'https://api.cryptowat.ch/markets/bitfinex/ethusd/price';
-            else if(arguments[0]=='gdax')
+            else if(argument[0]=='gdax')
             var url = 'https://api.cryptowat.ch/markets/gdax/ethusd/price';
             
            request(url, function (err, response, body) {
@@ -152,8 +153,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                   console.log(weather.result.price)
 
                   msg +="$"+ weather.result.price + "`";
-                  
-                  /*Send message*/
+
                   bot.sendMessage({ //We're going to send a message!
                         to : channelID,
                         message : msg
@@ -165,11 +165,11 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
         if (command == "btc") {//If the user posts '!ping' we'll do something!
             var msg = "`BTC: ";
            var url = 'https://api.cryptowat.ch/markets/gdax/btcusd/price';
-           if(arguments[0]=='bfx')
+           if(argument[0]=='bfx')
             var url = 'https://api.cryptowat.ch/markets/bitfinex/btcusd/price';
-            else if(arguments[0]=='gdax')
+            else if(argument[0]=='gdax')
             var url = 'https://api.cryptowat.ch/markets/gdax/btcusd/price';
-            else if(arguments[0]=='polo')
+            else if(argument[0]=='polo')
             var url = 'https://api.cryptowat.ch/markets/poloniex/btcusd/price';
             
            request(url, function (err, response, body) {
@@ -181,8 +181,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                   console.log(weather.result.price)
 
                   msg +="$"+ weather.result.price + "`";
-                  
-                  /*Send message*/
+
                   bot.sendMessage({ //We're going to send a message!
                         to : channelID,
                         message : msg
@@ -194,9 +193,9 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
         if (command == "ltc") {//If the user posts '!ping' we'll do something!
             var msg = "`LTC: ";
            var url = 'https://api.cryptowat.ch/markets/gdax/ltcusd/price';
-            if(arguments[0]=='bfx')
+            if(argument[0]=='bfx')
             var url = 'https://api.cryptowat.ch/markets/bitfinex/ltcusd/price';
-            else if(arguments[0]=='gdax')
+            else if(argument[0]=='gdax')
             var url = 'https://api.cryptowat.ch/markets/gdax/ltcusd/price';
            request(url, function (err, response, body) {
                if(err){
@@ -207,27 +206,26 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
 
                   msg +="$"+ weather.result.price + "`";
                   
-                  /*Send message*/
                   bot.sendMessage({ //We're going to send a message!
                         to : channelID,
                         message : msg
                     });
                 }
            })
-        }
+        }*/
         
         if (command == "price") {//If the user posts '!ping' we'll do something!
-            var msg = "`" + arguments[0].toUpperCase() + ": ";
-            //console.log(arguments.toUpperCase());
-           var url =  'https://coinmarketcap-nexuist.rhcloud.com/api/' + arguments[0];
+            var msg = "`" + argument[0].toUpperCase() + ": ";
+            //console.log(argument.toUpperCase());
+           var url =  'https://coinmarketcap-nexuist.rhcloud.com/api/' + argument[0];
            request(url, function (err, response, body) {
                var data = JSON.parse(body);
                if(data.error){
-                   console.log(user)
-                  console.log('error')
+                  //console.log(user)
+                  console.log('error no entry')
                   bot.sendMessage({ //We're going to send a message!
                         to : channelID,
-                        message : "nothing"
+                        message : "*Nothing Found*"
                     });
                 } else {
                   var weather = JSON.parse(body)
@@ -248,16 +246,16 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
         /*Do API request and parse into a message*/
         var url = "https://api.cryptowat.ch/markets/gdax/btcusd/price";
         
-        if(arguments[0]=='bfx')
+        if(argument[0]=='bfx')
             var url = 'https://api.cryptowat.ch/markets/bitfinex/btcusd/price';
-        else if(arguments[0]=='gdax')
+        else if(argument[0]=='gdax')
             var url = 'https://api.cryptowat.ch/markets/gdax/btcusd/price';
-        else if(arguments[0]=='polo')
+        else if(argument[0]=='polo')
             var url = 'https://api.cryptowat.ch/markets/poloniex/btcusd/price';
         else
-            arguments[0]='gdax';
+            argument[0]='gdax';
             
-        var wholemsg = "```Prices in USD ("+arguments[0].toUpperCase()+"):\n====================  \n";
+        var wholemsg = "```Prices in USD ("+argument[0].toUpperCase()+"):\n====================  \n";
             request.get('https://api.cryptowat.ch/markets').on('response', function(response){
                 //console.log(response.body)
             } )
@@ -309,52 +307,74 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
 
                 
             })//end of thread1
-            
-            
-            
-                
-
         }
-        //setTimeout(function2, 3000);
-        /**
-        if (command == "911") {//If the user posts '!ping' we'll do something!
-            setTimeout(function() {  
-                bot.sendMessage({ to : channelID, message : "\:man_with_turban::skin-tone-5:  ........ \::airplane_departure: "});
-            }, 700);
-            setTimeout(function() {  
-                bot.sendMessage({ to : channelID, message : ".... \:man_with_turban::skin-tone-5:  ... \::airplane_departure:"});
-            }, 1700);
-            setTimeout(function() {  
-                bot.sendMessage({ to : channelID, message : ".................. \::airplane_departure:"});
-            }, 2700);
-            setTimeout(function() {  
-                bot.sendMessage({ to : channelID, message : "\:airplane: \:cloud:  \:cloud:  \:cloud: "});
-            }, 3700);
-            setTimeout(function() {  
-                bot.sendMessage({ to : channelID, message : "\:cloud: \:airplane: :cloud:  \:cloud: "});
-            }, 4700);
-            setTimeout(function() {  
-                bot.sendMessage({ to : channelID, message : "\:cloud: \:cloud: \:airplane:  \:cloud: "});
-            }, 5800);
-            setTimeout(function() {  
-                bot.sendMessage({ to : channelID, message : "\ ..............\:cityscape:  \:cityscape:  "});
-            }, 6700);
-            setTimeout(function() {  
-                bot.sendMessage({ to : channelID, message : ".\:airplane:.......\:cityscape:  \:cityscape:  "});
-            }, 7700);
-            setTimeout(function() {  
-                bot.sendMessage({ to : channelID, message : "....\:airplane:...\:cityscape:  \:cityscape:  "});
-            }, 8700);
-            setTimeout(function() {  
-                bot.sendMessage({ to : channelID, message : ".........\:boom:  \:cityscape:  "});
-            }, 9700);
-            setTimeout(function() {  
-                bot.sendMessage({ to : channelID, message : "............\:boom:..\:boom:  "});
-            }, 10700);
-            setTimeout(function() {  
-                bot.sendMessage({ to : channelID, message : "............\:boom:  \:boom:  "});
-            }, 11700);
-        }**/
+        
+        /*Same as .prices but this is to have emojiis*/
+        if (command == "p") {//If the user posts '!ping' we'll do something!
+        /*Do API request and parse into a message*/
+        var url = "https://api.cryptowat.ch/markets/gdax/btcusd/price";
+        
+        if(argument[0]=='bfx')
+            var url = 'https://api.cryptowat.ch/markets/bitfinex/btcusd/price';
+        else if(argument[0]=='gdax')
+            var url = 'https://api.cryptowat.ch/markets/gdax/btcusd/price';
+        else if(argument[0]=='polo')
+            var url = 'https://api.cryptowat.ch/markets/poloniex/btcusd/price';
+        else
+            argument[0]='gdax';
+            
+        //var wholemsg = "`Prices in USD ("+argument[0].toUpperCase()+"):`\n";
+        //Try 2 cleaner
+        var wholemsg = "";
+            request.get('https://api.cryptowat.ch/markets').on('response', function(response){
+                //console.log(response.body)
+            } )
+            
+            //var url = `https://api.cryptowat.ch/markets/gdax/btcusd/price`
+            request(url, function (err, response, body) {
+                if(err){
+                  console.log('error')
+                } else {
+                  var weather = JSON.parse(body)
+
+                  var string1 = wholemsg + "<:BTC:338428982498426893> **- $"+ weather.result.price + "**\n";
+                }
+                
+                    //Second thread=======================
+                    url = `https://api.cryptowat.ch/markets/gdax/ethusd/price`
+                    request(url, function (err, response, body) {
+                    if(err){
+                      console.log('error')
+                    } else {
+                      var weather = JSON.parse(body)
+    
+                      var string2 = string1 + "<:ETH:338428982808805388> **- $"+ weather.result.price + "**\n";
+                    }
+                    
+                        //Third Thread----------------------
+                        url = `https://api.cryptowat.ch/markets/gdax/ltcusd/price`
+                        request(url, function (err, response, body) {
+                        if(err){
+                          console.log('error')
+                        } else {
+                          var weather = JSON.parse(body)
+        
+                          var string3 = string2 + "<:LTC:338428982703816705> **- $"+ weather.result.price + "**\n";
+                        }
+                        
+                        //Everything done, output msg.
+                        //string3 += "    __**("+argument[0].toUpperCase()+")**__          \n"
+                        bot.sendMessage({ //We're going to send a message!
+                                to : channelID,
+                                message : string3
+                        });
+                    })//end of thread 3
+                })//end of thread 2
+            })//end of thread1
+        }
+        
+        
+        /*Let's try to do prices with change summary*/
         
         if (command == "help") {//If the user posts '!ping' we'll do something!
         /*Do API request and parse into a message*/
@@ -368,13 +388,122 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
         
         if (command == "pin") {//If the user posts '!ping' we'll do something!
         /*Do API request and parse into a message*/
-            console.log(arguments);
+            console.log(argument);
             bot.sendMessage({ //We're going to send a message!
                         to : channelID,
-                        message : "\:airplane:"
+                        message : "```diff\n+100\n```"
             });
 
         }
+        
+        if (command == "tip") {//If the user posts '!ping' we'll do something!
+        /*Do API request and parse into a message*/
+            var address = "ETH: <0x4c3CCcE0F1F09BB7F2ea34A7101932F9C186209c>"
+            bot.sendMessage({ //We're going to send a message!
+                        to : channelID,
+                        message : "```markdown\n"+address+"\n```"
+            });
+
+        }
+        
+        if (command == "btc") {//If the user posts '!ping' we'll do something!
+            var msg = "```diff\nBTC: ";
+           var url = 'https://api.cryptowat.ch/markets/gdax/btcusd/price';
+           if(argument[0]=='bfx')
+            var url = 'https://api.cryptowat.ch/markets/bitfinex/btcusd/price';
+           request(url, function (err, response, body) {
+               if(err){ console.log('error')} 
+               else {
+                  var weather = JSON.parse(body)
+                  msg +="$"+ weather.result.price + " \n";
+                  
+                  /*Thread 2*/
+                  var url = 'https://api.cryptowat.ch/markets/gdax/btcusd/summary';
+                  request(url, function (err, response, body) {
+                    if(err){ console.log('error')} 
+                       else {
+                        var weather = JSON.parse(body)
+                        var change = weather.result.price.change.absolute.toString();
+                        var percent = (weather.result.price.change.percentage*100).toString();
+                        msg+= "" + change.substring(0,1) + "$"+ change.substring(1,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```"
+                        
+                        /*Send message*/
+                        bot.sendMessage({ //We're going to send a message!
+                         to : channelID,
+                         message : msg
+                        });
+                        }
+                    })
+                }
+           })
+        }
+        //end
+        
+        if (command == "eth") {//If the user posts '!ping' we'll do something!
+            var msg = "```diff\nETH: ";
+           var url = 'https://api.cryptowat.ch/markets/gdax/ethusd/price';
+           if(argument[0]=='bfx')
+            var url = 'https://api.cryptowat.ch/markets/bitfinex/ethusd/price';
+           request(url, function (err, response, body) {
+               if(err){ console.log('error')} 
+               else {
+                  var weather = JSON.parse(body)
+                  msg +="$"+ weather.result.price + " \n";
+                  
+                  /*Thread 2*/
+                  var url = 'https://api.cryptowat.ch/markets/gdax/ethusd/summary';
+                  request(url, function (err, response, body) {
+                    if(err){ console.log('error')} 
+                       else {
+                        var weather = JSON.parse(body)
+                        var change = weather.result.price.change.absolute.toString();
+                        var percent = (weather.result.price.change.percentage*100).toString();
+                        msg+= "" + change.substring(0,1) + "$"+ change.substring(1,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```"
+                        
+                        /*Send message*/
+                        bot.sendMessage({ //We're going to send a message!
+                         to : channelID,
+                         message : msg
+                        });
+                        }
+                    })
+                }
+           })
+        }
+        //end
+        
+        if (command == "ltc") {//If the user posts '!ping' we'll do something!
+            var msg = "```diff\nLTC: ";
+           var url = 'https://api.cryptowat.ch/markets/gdax/ltcusd/price';
+           if(argument[0]=='bfx')
+            var url = 'https://api.cryptowat.ch/markets/bitfinex/ltcusd/price';
+           request(url, function (err, response, body) {
+               if(err){ console.log('error')} 
+               else {
+                  var weather = JSON.parse(body)
+                  msg +="$"+ weather.result.price + " \n";
+                  
+                  /*Thread 2*/
+                  var url = 'https://api.cryptowat.ch/markets/gdax/ltcusd/summary';
+                  request(url, function (err, response, body) {
+                    if(err){ console.log('error')} 
+                       else {
+                        var weather = JSON.parse(body)
+                        var change = weather.result.price.change.absolute.toString();
+                        var percent = (weather.result.price.change.percentage*100).toString();
+                        msg+= "" + change.substring(0,1) + "$"+ change.substring(1,7) + " (" + percent.substring(0,7)+ "%) - 24 HR \n```"
+                        
+                        /*Send message*/
+                        bot.sendMessage({ //We're going to send a message!
+                         to : channelID,
+                         message : msg
+                        });
+                        }
+                    })
+                }
+           })
+        }
+        //end
     }
 
 });

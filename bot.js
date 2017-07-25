@@ -92,7 +92,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
             });
         }
         
-        if (command == "ans") {//If the user posts '!ping' we'll do something!
+        else if (command == "ans") {//If the user posts '!ping' we'll do something!
            var msg = "`ANS: ";
            var url = 'https://coinmarketcap-nexuist.rhcloud.com/api/ans';
            request(url, function (err, response, body) {
@@ -114,7 +114,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
            
         }
         
-        if (command == "bts") {//If the user posts '!ping' we'll do something!
+        else if (command == "bts") {//If the user posts '!ping' we'll do something!
            var msg = "`Bitshares: ";
            var url = 'https://coinmarketcap-nexuist.rhcloud.com/api/bts';
            request(url, function (err, response, body) {
@@ -214,15 +214,15 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
            })
         }*/
         
-        if (command == "price") {//If the user posts '!ping' we'll do something!
-            var msg = "`" + argument[0].toUpperCase() + ": ";
+        else if (command == "price") {//If the user posts '!ping' we'll do something!
+            var msg = "**`" + argument[0].toUpperCase() + ": ";
             //console.log(argument.toUpperCase());
            var url =  'https://coinmarketcap-nexuist.rhcloud.com/api/' + argument[0];
            request(url, function (err, response, body) {
                var data = JSON.parse(body);
                if(data.error){
                   //console.log(user)
-                  console.log('error no entry')
+                  console.log('error no entry' + command);
                   bot.sendMessage({ //We're going to send a message!
                         to : channelID,
                         message : "*Nothing Found*"
@@ -231,7 +231,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                   var weather = JSON.parse(body)
                   //console.log(weather.price.usd)
 
-                  msg +="$"+ weather.price.usd + "`";
+                  msg +="$"+ weather.price.usd + "`**";
                   
                   /*Send message*/
                   bot.sendMessage({ //We're going to send a message!
@@ -242,7 +242,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
            })
         }
         
-        if (command == "prices") {//If the user posts '!ping' we'll do something!
+        else if (command == "prices") {//If the user posts '!ping' we'll do something!
         /*Do API request and parse into a message*/
         var url = "https://api.cryptowat.ch/markets/gdax/btcusd/price";
         
@@ -255,7 +255,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
         else
             argument[0]='gdax';
             
-        var wholemsg = "```Prices in USD ("+argument[0].toUpperCase()+"):\n====================  \n";
+        var wholemsg = "**```Prices in USD ("+argument[0].toUpperCase()+"):\n====================  \n";
             request.get('https://api.cryptowat.ch/markets').on('response', function(response){
                 //console.log(response.body)
             } )
@@ -295,7 +295,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                         //Everything done, output msg.
                         bot.sendMessage({ //We're going to send a message!
                                 to : channelID,
-                                message : string3 + "```"
+                                message : string3 + "```**"
                         });
                 
                 
@@ -310,7 +310,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
         }
         
         /*Same as .prices but this is to have emojiis*/
-        if (command == "p") {//If the user posts '!ping' we'll do something!
+        else if (command == "p") {//If the user posts '!ping' we'll do something!
         /*Do API request and parse into a message*/
         var url = "https://api.cryptowat.ch/markets/gdax/btcusd/price";
         
@@ -376,7 +376,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
         
         /*Let's try to do prices with change summary*/
         
-        if (command == "help") {//If the user posts '!ping' we'll do something!
+        else if (command == "help") {//If the user posts '!ping' we'll do something!
         /*Do API request and parse into a message*/
            bot.sendMessage({ //We're going to send a message!
                         to : channelID,
@@ -386,7 +386,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
 
         }
         
-        if (command == "pin") {//If the user posts '!ping' we'll do something!
+        else if (command == "pin") {//If the user posts '!ping' we'll do something!
         /*Do API request and parse into a message*/
             console.log(argument);
             bot.sendMessage({ //We're going to send a message!
@@ -396,7 +396,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
 
         }
         
-        if (command == "tip") {//If the user posts '!ping' we'll do something!
+        else if (command == "tip") {//If the user posts '!ping' we'll do something!
         /*Do API request and parse into a message*/
             var address = "ETH: <0x4c3CCcE0F1F09BB7F2ea34A7101932F9C186209c>"
             bot.sendMessage({ //We're going to send a message!
@@ -406,8 +406,8 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
 
         }
         
-        if (command == "btc") {//If the user posts '!ping' we'll do something!
-            var msg = "```diff\nBTC: ";
+        else if (command == "btc") {//If the user posts '!ping' we'll do something!
+            var msg = "```diff\n BTC: ";
            var url = 'https://api.cryptowat.ch/markets/gdax/btcusd/price';
            if(argument[0]=='bfx')
             var url = 'https://api.cryptowat.ch/markets/bitfinex/btcusd/price';
@@ -439,8 +439,8 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
         }
         //end
         
-        if (command == "eth") {//If the user posts '!ping' we'll do something!
-            var msg = "```diff\nETH: ";
+        else if (command == "eth") {//If the user posts '!ping' we'll do something!
+            var msg = "```diff\n ETH: ";
            var url = 'https://api.cryptowat.ch/markets/gdax/ethusd/price';
            if(argument[0]=='bfx')
             var url = 'https://api.cryptowat.ch/markets/bitfinex/ethusd/price';
@@ -472,8 +472,8 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
         }
         //end
         
-        if (command == "ltc") {//If the user posts '!ping' we'll do something!
-            var msg = "```diff\nLTC: ";
+        else if (command == "ltc") {//If the user posts '!ping' we'll do something!
+            var msg = "```diff\n LTC: ";
            var url = 'https://api.cryptowat.ch/markets/gdax/ltcusd/price';
            if(argument[0]=='bfx')
             var url = 'https://api.cryptowat.ch/markets/bitfinex/ltcusd/price';
@@ -504,6 +504,62 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
            })
         }
         //end
+        
+        else {
+            var msg = "**`" + command.toUpperCase() + ": ";
+            //console.log(argument.toUpperCase());
+           var url =  'https://coinmarketcap-nexuist.rhcloud.com/api/' + command.toLowerCase();
+           request(url, function (err, response, body) {
+               var data = JSON.parse(body);
+               if(data.error){
+                  
+                  //search coinmarketcap THREAD: 2
+                  var url =  'https://api.coinmarketcap.com/v1/ticker/' + command.toLowerCase();
+                  request(url, function (err, response, body) {
+                       var data = JSON.parse(body);
+                       console.log(data);
+                       if(data.error){
+                          //console.log(user)
+                          console.log('error no entry' + command);
+                          bot.sendMessage({ //We're going to send a message!
+                                to : channelID,
+                                message : "*Nothing Found*"
+                            });
+                        } else {
+                          var weather = JSON.parse(body)
+                          //console.log(weather.price.usd)
+                          //redo message
+                          msg = "**` " + weather[0].symbol + ": ";
+                          msg +="$"+ weather[0].price_usd + "`/`"+ weather[0].price_btc+"BTC`**";
+                          
+                          /*Send message*/
+                          bot.sendMessage({ //We're going to send a message!
+                                to : channelID,
+                                message : msg
+                            });
+                        }
+                   })
+                  /*console.log('error no entry')
+                  bot.sendMessage({ //We're going to send a message!
+                        to : channelID,
+                        message : "*Nothing Found*"
+                    });*/
+                    
+                    
+                } else {
+                  var weather = JSON.parse(body)
+                  //console.log(weather.price.usd)
+
+                  msg +="$"+ weather.price.usd + "`**";
+                  
+                  /*Send message*/
+                  bot.sendMessage({ //We're going to send a message!
+                        to : channelID,
+                        message : msg
+                    });
+                }
+           })
+        }
     }
 
 });

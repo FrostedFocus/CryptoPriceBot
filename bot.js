@@ -92,11 +92,18 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
             });
         }
         
+        if (command == "10") {//If the user posts '!ping' we'll do something!
+            bot.sendMessage({ //We're going to send a message!
+                to : channelID,
+                message : "*SELL SELL SELL*"
+            });
+        }
+        
         else if (command == "ans") {//If the user posts '!ping' we'll do something!
            var msg = "`ANS: ";
            var url = 'https://coinmarketcap-nexuist.rhcloud.com/api/ans';
            request(url, function (err, response, body) {
-               if(err){
+               if(err || body.charAt(0) == '<'){
                   console.log('error')
                 } else {
                   var weather = JSON.parse(body)
@@ -118,7 +125,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
            var msg = "`Bitshares: ";
            var url = 'https://coinmarketcap-nexuist.rhcloud.com/api/bts';
            request(url, function (err, response, body) {
-               if(err){
+               if(err || body.charAt(0) == '<'){
                   console.log('error')
                 } else {
                   var weather = JSON.parse(body)
@@ -411,6 +418,13 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
         else if (command == "btc") {//If the user posts '!ping' we'll do something!
             var msg = "```diff\n BTC: ";
            var url = 'https://api.cryptowat.ch/markets/gdax/btcusd/price';
+           
+           
+           
+           
+           
+           
+           
            if(argument[0]=='bfx')
             var url = 'https://api.cryptowat.ch/markets/bitfinex/btcusd/price';
            request(url, function (err, response, body) {
@@ -427,7 +441,10 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                         var weather = JSON.parse(body)
                         var change = weather.result.price.change.absolute.toString();
                         var percent = (weather.result.price.change.percentage*100).toString();
-                        msg+= "" + change.substring(0,1) + "$"+ change.substring(1,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```"
+                        if( change.substring(0,1) == "-")
+                            msg+= "" + change.substring(0,1) + "$"+ change.substring(1,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```"
+                        else
+                            msg+= "+" + "$"+ change.substring(0,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```"
                         
                         /*Send message*/
                         bot.sendMessage({ //We're going to send a message!
@@ -460,7 +477,10 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                         var weather = JSON.parse(body)
                         var change = weather.result.price.change.absolute.toString();
                         var percent = (weather.result.price.change.percentage*100).toString();
-                        msg+= "" + change.substring(0,1) + "$"+ change.substring(1,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```"
+                        if( change.substring(0,1) == "-")
+                            msg+= "" + change.substring(0,1) + "$"+ change.substring(1,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```"
+                        else
+                            msg+= "+" + "$"+ change.substring(0,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```"
                         
                         /*Send message*/
                         bot.sendMessage({ //We're going to send a message!
@@ -493,7 +513,10 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                         var weather = JSON.parse(body)
                         var change = weather.result.price.change.absolute.toString();
                         var percent = (weather.result.price.change.percentage*100).toString();
-                        msg+= "" + change.substring(0,1) + "$"+ change.substring(1,7) + " (" + percent.substring(0,7)+ "%) - 24 HR \n```"
+                        if( change.substring(0,1) == "-")
+                            msg+= "" + change.substring(0,1) + "$"+ change.substring(1,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```"
+                        else
+                            msg+= "+" + "$"+ change.substring(0,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```"
                         
                         /*Send message*/
                         bot.sendMessage({ //We're going to send a message!
@@ -512,15 +535,17 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
             //console.log(argument.toUpperCase());
            var url =  'https://coinmarketcap-nexuist.rhcloud.com/api/' + command.toLowerCase();
            request(url, function (err, response, body) {
-               var data = JSON.parse(body);
+                console.log("body: " + body)
+                if(body.charAt(0) != '<')
+                    var data = JSON.parse(body);
                if(data.error){
-                  
+                  console.log(data.error)
                   //search coinmarketcap THREAD: 2
                   var url =  'https://api.coinmarketcap.com/v1/ticker/' + command.toLowerCase();
                   request(url, function (err, response, body) {
                        var data = JSON.parse(body);
-                       console.log(data);
-                       if(data.error){
+                       //console.log(data);
+                       if(data.error || command.length < 3){
                           //console.log(user)
                           console.log('error no entry' + command);
                           bot.sendMessage({ //We're going to send a message!
@@ -534,18 +559,12 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                           msg = "**` " + weather[0].symbol + ": ";
                           msg +="$"+ weather[0].price_usd + "`/`"+ weather[0].price_btc+"BTC`**";
                           
-                          /*Send message*/
                           bot.sendMessage({ //We're going to send a message!
                                 to : channelID,
                                 message : msg
                             });
                         }
                    })
-                  /*console.log('error no entry')
-                  bot.sendMessage({ //We're going to send a message!
-                        to : channelID,
-                        message : "*Nothing Found*"
-                    });*/
                     
                     
                 } else {
@@ -554,7 +573,6 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
 
                   msg +="$"+ weather.price.usd + "`**";
                   
-                  /*Send message*/
                   bot.sendMessage({ //We're going to send a message!
                         to : channelID,
                         message : msg

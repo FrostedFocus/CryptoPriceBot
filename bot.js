@@ -350,6 +350,13 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                 }
                 
                     //Second thread=======================
+                    if(argument[0]=='bfx')
+                        url = 'https://api.cryptowat.ch/markets/bitfinex/ethusd/price';
+                    else if(argument[0]=='gdax')
+                        url = 'https://api.cryptowat.ch/markets/gdax/ethusd/price';
+                    else if(argument[0]=='polo')
+                        url = 'https://api.cryptowat.ch/markets/poloniex/ethusd/price';
+                    else
                     url = `https://api.cryptowat.ch/markets/gdax/ethusd/price`
                     request(url, function (err, response, body) {
                     if(err){
@@ -361,6 +368,13 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                     }
                     
                         //Third Thread----------------------
+                        if(argument[0]=='bfx')
+                        url = 'https://api.cryptowat.ch/markets/bitfinex/ltcusd/price';
+                        else if(argument[0]=='gdax')
+                            url = 'https://api.cryptowat.ch/markets/gdax/ltcusd/price';
+                        else if(argument[0]=='polo')
+                            url = 'https://api.cryptowat.ch/markets/poloniex/ltcusd/price';
+                        else
                         url = `https://api.cryptowat.ch/markets/gdax/ltcusd/price`
                         request(url, function (err, response, body) {
                         if(err){

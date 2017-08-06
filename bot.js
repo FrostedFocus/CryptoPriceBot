@@ -101,15 +101,15 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
         
         else if (command == "ans") {//If the user posts '!ping' we'll do something!
            var msg = "`ANS: ";
-           var url = 'https://coinmarketcap-nexuist.rhcloud.com/api/ans';
+           var url = 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=usdt-ans';
            request(url, function (err, response, body) {
                if(err || body.charAt(0) == '<'){
                   console.log('error')
                 } else {
                   var weather = JSON.parse(body)
-                  console.log(weather.price.usd)
+                  console.log(weather.result[0].Last);
 
-                  msg +="$"+ weather.price.usd + "`";
+                  msg +="$"+ weather.result[0].Last + "`";
                   
                   /*Send message*/
                   bot.sendMessage({ //We're going to send a message!
@@ -119,6 +119,50 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                 }
            })
            
+        }
+        
+        
+        else if (command == "omg") {//If the user posts '!ping' we'll do something!
+           var msg = "`OMG (BFX): ";
+           var url = 'https://api.cryptowat.ch/markets/bitfinex/omgusd/price';
+           request(url, function (err, response, body) {
+               if(err || body.charAt(0) == '<'){
+                  console.log('error')
+                } else {
+                  var weather = JSON.parse(body)
+                  console.log(weather.result.price)
+
+                  msg +="$"+ weather.result.price + "`";
+                  
+                  /*Send message*/
+                  bot.sendMessage({ //We're going to send a message!
+                        to : channelID,
+                        message : msg
+                    });
+                }
+           })
+        }
+        
+        else if (command == "bch") {//If the user posts '!ping' we'll do something!
+           var msg = "`BCH (BFX): ";
+           var url = 'https://api.cryptowat.ch/markets/bitfinex/bchusd/price';
+           request(url, function (err, response, body) {
+               if(err || body.charAt(0) == '<'){
+                  console.log('error')
+                } else {
+                    
+                  var weather = JSON.parse(body)
+                  console.log(weather.result.price)
+
+                  msg +="$"+ weather.result.price + "`";
+                  
+                  /*Send message*/
+                  bot.sendMessage({ //We're going to send a message!
+                        to : channelID,
+                        message : msg
+                    });
+                }
+           })
         }
         
         else if (command == "bts") {//If the user posts '!ping' we'll do something!
@@ -530,7 +574,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                         if( change.substring(0,1) == "-")
                             msg+= "" + change.substring(0,1) + "$"+ change.substring(1,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```"
                         else
-                            msg+= "+" + "$"+ change.substring(0,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```"
+                            msg+= "+" + "$"+ change.substring(0,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```";
                         
                         /*Send message*/
                         bot.sendMessage({ //We're going to send a message!
@@ -549,6 +593,9 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
             //console.log(argument.toUpperCase());
            var url =  'https://coinmarketcap-nexuist.rhcloud.com/api/' + command.toLowerCase();
            request(url, function (err, response, body) {
+               if(err)
+                throw err;
+                
                 console.log("body: " + body)
                 if(body.charAt(0) != '<')
                     var data = JSON.parse(body);
@@ -557,6 +604,9 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                   //search coinmarketcap THREAD: 2
                   var url =  'https://api.coinmarketcap.com/v1/ticker/' + command.toLowerCase();
                   request(url, function (err, response, body) {
+                      if(err)
+                        throw err;
+                        
                        var data = JSON.parse(body);
                        //console.log(data);
                        if(data.error || command.length < 3){

@@ -100,7 +100,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
         }
         
         else if (command == "ans" || command == "neo" ) {//If the user posts '!ping' we'll do something!
-           var msg = "`ANS: ";
+           var msg = "`NEO: ";
            var url = 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=usdt-neo';
            request(url, function (err, response, body) {
                if(err || body.charAt(0) == '<'){

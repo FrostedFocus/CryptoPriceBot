@@ -124,7 +124,8 @@ function deleteMsg2(channel_id, message_id){
             channelID: channel_id,
             messageID: message_id
         });
-        
+    
+    if(channel_id != 335327431684653069)    
     bot.getMessages({
                 channelID: channel_id, limit: 25}, function(error, message){
                     for(i in message)

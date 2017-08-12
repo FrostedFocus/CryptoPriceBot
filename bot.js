@@ -77,9 +77,72 @@ bot.setPresence({
     });
 
 //bot.user.setGame("with my self");
+function getMessageinfo(channel_id){
+    bot.getMessage({
+                channelID: channel_id}, function(error, message){
+                    botMessageID = message[0].id;
+                });
+}
+function deleteMsg(channel_id, message_id){
+    
+
+    var botMessageID;
+    bot.getMessage({
+                channelID: channel_id}, function(error, message){
+                    botMessageID = message[0].id;
+                    console.log(message[0]);
+                
+    
+    setTimeout(function(){
+    bot.deleteMessage({
+            channelID: channel_id,
+            messageID: message_id
+        });
+        
+    bot.getMessage({
+                channelID: channel_id}, function(error, message){
+                    if(message[0].author.username == "testbot")
+                    bot.deleteMessage({
+                        channelID: channel_id,
+                        messageID: message[0].id
+                    });
+                    
+                });
+        
+    }, 4500);
+    
+                });//end of get message break.
+}
+
+function deleteMsg2(channel_id, message_id){
+    
+
+    var botMessageID;
+    
+    setTimeout(function(){
+    bot.deleteMessage({
+            channelID: channel_id,
+            messageID: message_id
+        });
+        
+    bot.getMessages({
+                channelID: channel_id, limit: 7}, function(error, message){
+                    for(i in message)
+                        if(message[i].author.username == "testbot" || message[i].author.username == "Crypto Price Bot")
+                        bot.deleteMessage({
+                        channelID: channel_id,
+                        messageID: message[i].id
+                    });
+                    
+                });
+        
+    }, 7500);
+
+}
 
 //In this function we're going to add our commands.
 bot.on("message", function (user, userID, channelID, message, rawEvent) {
+    
     if (message.substring(0, 1) == ".") {
         var argument = message.substring(1).split(" ");
         var command = argument[0].toLowerCase();
@@ -90,6 +153,20 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                 to : channelID,
                 message : "Pong!"
             });
+            
+            setTimeout(function(){
+                
+            bot.deleteMessage({
+                channelID: rawEvent.d.channel_id,
+                messageID: rawEvent.d.id
+            });
+                
+            //bot.getMessage({
+            //    channelID: rawEvent.d.channel_id}, function(error, message){ console.log(message)});
+                
+                  }, 5000);
+              
+
         }
         
         if (command == "10") {//If the user posts '!ping' we'll do something!
@@ -116,6 +193,10 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                         to : channelID,
                         message : msg
                     });
+                    
+                    
+                  deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
+                    
                 }
            })
            
@@ -139,6 +220,8 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                         to : channelID,
                         message : msg
                     });
+                    
+                  deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
                 }
            })
         }
@@ -161,6 +244,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                         to : channelID,
                         message : msg
                     });
+                deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
                 }
            })
         }
@@ -182,6 +266,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                         to : channelID,
                         message : msg
                     });
+                deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
                 }
            })
            
@@ -509,6 +594,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                          to : channelID,
                          message : msg
                         });
+                        deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
                         }
                     })
                 }
@@ -545,6 +631,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                          to : channelID,
                          message : msg
                         });
+                        deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
                         }
                     })
                 }
@@ -581,6 +668,8 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                          to : channelID,
                          message : msg
                         });
+                        deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
+                        
                         }
                     })
                 }
@@ -627,6 +716,10 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                                 to : channelID,
                                 message : msg
                             });
+                            
+                          deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
+                            
+                        
                         }
                    })
                     
@@ -641,6 +734,8 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                         to : channelID,
                         message : msg
                     });
+                    
+                  deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
                 }
            })
         }

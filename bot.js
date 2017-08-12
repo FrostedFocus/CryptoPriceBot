@@ -126,7 +126,7 @@ function deleteMsg2(channel_id, message_id){
         });
         
     bot.getMessages({
-                channelID: channel_id, limit: 7}, function(error, message){
+                channelID: channel_id, limit: 25}, function(error, message){
                     for(i in message)
                         if(message[i].author.username == "testbot" || message[i].author.username == "Crypto Price Bot")
                         bot.deleteMessage({
@@ -136,7 +136,7 @@ function deleteMsg2(channel_id, message_id){
                     
                 });
         
-    }, 7500);
+    }, 16000);
 
 }
 

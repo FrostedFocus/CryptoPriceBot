@@ -165,16 +165,9 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
             //bot.getMessage({
             //    channelID: rawEvent.d.channel_id}, function(error, message){ console.log(message)});
                 
-                  }, 5000);
+                  }, 10000);
               
 
-        }
-        
-        if (command == "10") {//If the user posts '!ping' we'll do something!
-            bot.sendMessage({ //We're going to send a message!
-                to : channelID,
-                message : "*SELL SELL SELL*"
-            });
         }
         
         else if (command == "ans" || command == "neo" ) {//If the user posts '!ping' we'll do something!
@@ -204,6 +197,8 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
         }
         
         
+        //Original OMG Command
+        /*
         else if (command == "omg") {//If the user posts '!ping' we'll do something!
            var msg = "`OMG (BFX): ";
            var url = 'https://api.cryptowat.ch/markets/bitfinex/omgusd/price';
@@ -216,7 +211,6 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
 
                   msg +="$"+ weather.result.price + "`";
                   
-                  /*Send message*/
                   bot.sendMessage({ //We're going to send a message!
                         to : channelID,
                         message : msg
@@ -225,7 +219,47 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                   deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
                 }
            })
+        }*/
+        
+        //New 
+        else if (command == "omg") {//If the user posts '!ping' we'll do something!
+            var msg = "```diff\n OMG: ";
+           var url = 'https://api.cryptowat.ch/markets/gdax/omgusd/price';
+           if(argument[0]=='bfx')
+            var url = 'https://api.cryptowat.ch/markets/bitfinex/omgusd/price';
+           request(url, function (err, response, body) {
+               if(err){ console.log('error')} 
+               else {
+                  var weather = JSON.parse(body)
+                  msg +="$"+ weather.result.price + " \n";
+                  
+                  /*Thread 2*/
+                  var url = 'https://api.cryptowat.ch/markets/gdax/omgusd/summary';
+                  request(url, function (err, response, body) {
+                    if(err){ console.log('error')} 
+                       else {
+                        var weather = JSON.parse(body)
+                        var change = weather.result.price.change.absolute.toString();
+                        var percent = (weather.result.price.change.percentage*100).toString();
+                        if( change.substring(0,1) == "-")
+                            msg+= "" + change.substring(0,1) + "$"+ change.substring(1,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```"
+                        else
+                            msg+= "+" + "$"+ change.substring(0,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```"
+                        
+                        /*Send message*/
+                        bot.sendMessage({ //We're going to send a message!
+                         to : channelID,
+                         message : msg
+                        });
+                        deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
+                        }
+                    })
+                }
+           })
         }
+        //end
+        
+        
         
         else if (command == "bch") {//If the user posts '!ping' we'll do something!
            var msg = "`BCH (BFX): ";
@@ -529,7 +563,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
         
         /*Let's try to do prices with change summary*/
         
-        else if (command == "help") {//If the user posts '!ping' we'll do something!
+        else if (command == "help") {
         /*Do API request and parse into a message*/
            bot.sendMessage({ //We're going to send a message!
                         to : channelID,
@@ -539,7 +573,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
 
         }
         
-        else if (command == "pin") {//If the user posts '!ping' we'll do something!
+        else if (command == "pin") {
         /*Do API request and parse into a message*/
             console.log(argument);
             bot.sendMessage({ //We're going to send a message!
@@ -549,7 +583,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
 
         }
         
-        else if (command == "tip") {//If the user posts '!ping' we'll do something!
+        else if (command == "tip") {
         /*Do API request and parse into a message*/
             var address = "ETH: <0x4c3CCcE0F1F09BB7F2ea34A7101932F9C186209c>"
             bot.sendMessage({ //We're going to send a message!
@@ -559,7 +593,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
 
         }
         
-        else if (command == "btc") {//If the user posts '!ping' we'll do something!
+        else if (command == "btc") {
             var msg = "```diff\n BTC: ";
            var url = 'https://api.cryptowat.ch/markets/gdax/btcusd/price';
            
@@ -729,7 +763,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                   var weather = JSON.parse(body)
                   //console.log(weather.price.usd)
 
-                  msg +="$"+ weather.price.usd + "`**";
+                  msg +="$"+ weather.price.usd + " " + weather.change + "%`**";
                   
                   bot.sendMessage({ //We're going to send a message!
                         to : channelID,

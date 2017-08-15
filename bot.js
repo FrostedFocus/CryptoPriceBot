@@ -8,7 +8,7 @@ const client = new Discordie();
 
 /*** API SHIT **/
 var request = require('request');
-
+var tokenfile = require('./tokeninfo.js');
 /*var _GDAX = require('./src/classes/GDAX');
 var _CoinMarketCap = require('/src/classes/CoinMarketCap');
 var _commander = require('commander');
@@ -46,12 +46,12 @@ logger.add(logger.transports.Console, {
 logger.level = 'debug';
 
 var auth = require("./auth.json"); //json variable
-
+console.log(tokenfile.str());
 //Here we create our bot variable, this is what we're going to use to communicate to discord.
 var bot = new Discordbot.Client({ //Object construct
         //email : auth.email, //<-- This is the email from your auth file.
         //password : auth.password,//<-- This is the password from your auth file.
-        token: "MzMwMzY3MTA2OTA0NDg5OTg0.DDf96A.GSrCoOXUktFNFCd94cHa7ofuZuw",
+        token: tokenfile.str(),
         autorun : true,
         game: "with myself."
 

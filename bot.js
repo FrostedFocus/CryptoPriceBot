@@ -415,7 +415,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
            })
         }*/
         
-        else if (command == "price") {//If the user posts '!ping' we'll do something!
+        else if (command == "...) {//If the user posts '!ping' we'll do something!
         if(!argument[0])
             argument[0] = "btc";
             var msg = "**`" + argument[0].toUpperCase() + ": ";
@@ -468,7 +468,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
             }
         }
         
-        else if (command == "prices") {//Request all tickers in list.
+        else if (command == "prices" || command == "price") {//Request all tickers in list.
 
             
             //var url = `https://api.cryptowat.ch/markets/gdax/btcusd/price`

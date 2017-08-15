@@ -140,7 +140,7 @@ function deleteMsg2(channel_id, message_id){
                     
                 });
         
-    }, 75000);
+    }, 95000);
 
 }
 

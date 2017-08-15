@@ -746,7 +746,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                           //console.log(weather.price.usd)
                           //redo message
                           msg = "**```diff\n" + weather[0].symbol + ": ";
-                          msg +="$"+ weather[0].price_usd + "`/`"+ weather[0].price_btc+"BTC\n";
+                          msg +="$"+ weather[0].price_usd + "/"+ weather[0].price_btc+" BTC\n";
                           
                           if( change.substring(0,1) == "-")
                              msg+= "-" + "(" + change.substring(1,7)+ "%) - 24 HR\n```**"

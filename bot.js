@@ -415,7 +415,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
            })
         }*/
         
-        else if (command == "...) {//If the user posts '!ping' we'll do something!
+        else if (command == ".a") {//If the user posts '!ping' we'll do something!
         if(!argument[0])
             argument[0] = "btc";
             var msg = "**`" + argument[0].toUpperCase() + ": ";

@@ -5,7 +5,7 @@ Simple Chat Bot for Price Updates, written in nodejs.
 ```markdown
 # Installation
 
-1) create a tokeninfo.js file. export personal discord token variables or paste it in bot.js
+1) Paste personal discord app token value into bot.js or create a tokeninfo.js file and export the token variable as str.
 
 2) npm install
 

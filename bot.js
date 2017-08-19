@@ -203,8 +203,10 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
         }
         
         else if (command == "ans" || command == "neo" ) {//If the user posts '!ping' we'll do something!
-           var msg = "`NEO: ";
+           var msg = "**`NEO: ";
            var url = 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=usdt-neo';
+           
+           /*ADD BTC ARGUMENT PAIR.*/
            request(url, function (err, response, body) {
                if(err || body.charAt(0) == '<'){
                   console.log('error')
@@ -212,19 +214,28 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                   var weather = JSON.parse(body)
                   console.log(weather.result[0].Last);
 
-                  msg +="$"+ weather.result[0].Last + "`";
-                  
-                  /*Send message*/
-                  bot.sendMessage({ //We're going to send a message!
-                        to : channelID,
-                        message : msg
-                    });
+                  msg +="$"+ weather.result[0].Last + " / ";
+                  //BTC request
+                  url = 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=btc-neo';
+                  request(url, function (err, response, body) {
+                    if(err || body.charAt(0) == '<'){
+                      console.log('error')
+                    } else {
+                      var weather = JSON.parse(body)
+                      msg +=""+ weather.result[0].Last + " BTC`**";
+                    }
                     
                     
-                  deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
-                    
+                      /*Send message*/
+                      bot.sendMessage({ //We're going to send a message!
+                            to : channelID,
+                            message : msg
+                        });
+                    deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
+                  }); //end thread 2
                 }
-           })
+
+           });//end thread 1
            
         }
         
@@ -292,27 +303,39 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
         
         
         else if (command == "bch") {//If the user posts '!ping' we'll do something!
-           var msg = "`BCH (BFX): ";
+            var msg = "**```diff\nBCH (BFX): ";
            var url = 'https://api.cryptowat.ch/markets/bitfinex/bchusd/price';
            request(url, function (err, response, body) {
-               if(err || body.charAt(0) == '<'){
-                  console.log('error')
-                } else {
-                    
+               if(err){ console.log('error')} 
+               else {
                   var weather = JSON.parse(body)
-                  console.log(weather.result.price)
-
-                  msg +="$"+ weather.result.price + "`";
+                  msg +="$"+ weather.result.price + " \n";
                   
-                  /*Send message*/
-                  bot.sendMessage({ //We're going to send a message!
-                        to : channelID,
-                        message : msg
-                    });
-                deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
+                  /*Thread 2*/
+                  var url = 'https://api.cryptowat.ch/markets/bitfinex/bchusd/summary';
+                  request(url, function (err, response, body) {
+                    if(err){ console.log('error')} 
+                       else {
+                        var weather = JSON.parse(body)
+                        var change = weather.result.price.change.absolute.toString();
+                        var percent = (weather.result.price.change.percentage*100).toString();
+                        if( change.substring(0,1) == "-")
+                            msg+= "" + change.substring(0,1) + "$"+ change.substring(1,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```**"
+                        else
+                            msg+= "+" + "$"+ change.substring(0,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```**"
+                        
+                        /*Send message*/
+                        bot.sendMessage({ //We're going to send a message!
+                         to : channelID,
+                         message : msg
+                        });
+                        deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
+                        }
+                    })
                 }
            })
         }
+        //end
         
         else if (command == "bts") {//If the user posts '!ping' we'll do something!
            var msg = "`Bitshares: ";
@@ -446,8 +469,12 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
         }
         
         else if (command == "list") {//Request all tickers in list.
-        if(argument[0]=='add')
-            list.push(argument[1]);
+        if(argument[0]=='add'){
+            var index = list.indexOf(argument[1]);
+            if (!(index > -1)) {
+                list.push(argument[1]);
+            }
+        }
         else if(argument[0]=='remove'){
             var index = list.indexOf(argument[1]);
             if (index > -1) {
@@ -740,13 +767,14 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                                 to : channelID,
                                 message : "*Nothing Found*"
                             });
+                          deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
                         } else {
                           var weather = JSON.parse(body)
                           var change = weather[0].percent_change_24h;
                           //console.log(weather.price.usd)
                           //redo message
                           msg = "**```diff\n" + weather[0].symbol + ": ";
-                          msg +="$"+ weather[0].price_usd + "/"+ weather[0].price_btc+" BTC\n";
+                          msg +="$"+ weather[0].price_usd + " / "+ weather[0].price_btc+" BTC\n";
                           
                           if( change.substring(0,1) == "-")
                              msg+= "-" + "(" + change.substring(1,7)+ "%) - 24 HR\n```**"

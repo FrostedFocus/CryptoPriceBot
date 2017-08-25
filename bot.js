@@ -360,6 +360,29 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
            
         }
         
+        else if (command == "xbt") {//If the user posts '!ping' we'll do something!
+           var msg = "`XBT (BMX): ";
+           var url = 'https://api.itbit.com/v1/markets/XBTUSD/ticker';
+           request(url, function (err, response, body) {
+               if(err || body.charAt(0) == '<'){
+                  console.log('error')
+                } else {
+                  var weather = JSON.parse(body)
+                  console.log(weather.lastPrice)
+
+                  msg +="$"+ weather.lastPrice + "`";
+                  
+                  /*Send message*/
+                  bot.sendMessage({ //We're going to send a message!
+                        to : channelID,
+                        message : msg
+                    });
+                deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
+                }
+           })
+           
+        }
+        
         /*Simple read....
         if (command == "eth") {//If the user posts '!ping' we'll do something!
             var msg = "`ETH: ";

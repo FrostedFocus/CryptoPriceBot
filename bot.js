@@ -300,6 +300,42 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
         }
         //end
         
+        //New 
+        else if (command == "XMR") {//If the user posts '!ping' we'll do something!
+            var msg = "**```diff\nXMR (BCH): ";
+           var url = 'https://api.cryptowat.ch/markets/bitfinex/xmrusd/price';
+           request(url, function (err, response, body) {
+               if(err){ console.log('error')} 
+               else {
+                  var weather = JSON.parse(body)
+                  msg +="$"+ weather.result.price + " \n";
+                  
+                  /*Thread 2*/
+                  var url = 'https://api.cryptowat.ch/markets/bitfinex/xmrusd/summary';
+                  request(url, function (err, response, body) {
+                    if(err){ console.log('error')} 
+                       else {
+                        var weather = JSON.parse(body)
+                        var change = weather.result.price.change.absolute.toString();
+                        var percent = (weather.result.price.change.percentage*100).toString();
+                        if( change.substring(0,1) == "-")
+                            msg+= "" + change.substring(0,1) + "$"+ change.substring(1,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```**"
+                        else
+                            msg+= "+" + "$"+ change.substring(0,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```**"
+                        
+                        /*Send message*/
+                        bot.sendMessage({ //We're going to send a message!
+                         to : channelID,
+                         message : msg
+                        });
+                        deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
+                        }
+                    })
+                }
+           })
+        }
+        //end
+        
         
         
         else if (command == "bch") {//If the user posts '!ping' we'll do something!

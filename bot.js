@@ -45,7 +45,6 @@ logger.add(logger.transports.Console, {
 });
 logger.level = 'debug';
 
-var auth = require("./auth.json"); //json variable
 console.log(tokenfile.str());
 //Here we create our bot variable, this is what we're going to use to communicate to discord.
 var bot = new Discordbot.Client({ //Object construct
@@ -302,7 +301,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
         
         //New 
         else if (command == "XMR") {//If the user posts '!ping' we'll do something!
-            var msg = "**```diff\nXMR (BCH): ";
+            var msg = "**```diff\nXMR (BFX): ";
            var url = 'https://api.cryptowat.ch/markets/bitfinex/xmrusd/price';
            request(url, function (err, response, body) {
                if(err){ console.log('error')} 

@@ -300,7 +300,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
         //end
         
         //New 
-        else if (command == "XMR") {//If the user posts '!ping' we'll do something!
+        else if (command == "xmr") {//If the user posts '!ping' we'll do something!
             var msg = "**```diff\nXMR (BFX): ";
            var url = 'https://api.cryptowat.ch/markets/bitfinex/xmrusd/price';
            request(url, function (err, response, body) {

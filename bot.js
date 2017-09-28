@@ -201,41 +201,72 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
 
         }
         
-        else if (command == "ans" || command == "neo" ) {//If the user posts '!ping' we'll do something!
-           var msg = "**`NEO: ";
-           var url = 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=usdt-neo';
-           
-           /*ADD BTC ARGUMENT PAIR.*/
+        else if (command == "neo") {//If the user posts '!ping' we'll do something!
+            var msg = "**```diff\nNEO: ";
+           var url = 'https://api.cryptowat.ch/markets/bitfinex/neousd/price';
            request(url, function (err, response, body) {
-               if(err || body.charAt(0) == '<'){
-                  console.log('error')
-                } else {
+               if(err){ console.log('error')} 
+               else {
                   var weather = JSON.parse(body)
-                  console.log(weather.result[0].Last);
-
-                  msg +="$"+ weather.result[0].Last + " / ";
-                  //BTC request
-                  url = 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=btc-neo';
+                  msg +="$"+ weather.result.price + " \n";
+                  
+                  /*Thread 2*/
+                  var url = 'https://api.cryptowat.ch/markets/bitfinex/neousd/summary';
                   request(url, function (err, response, body) {
-                    if(err || body.charAt(0) == '<'){
-                      console.log('error')
-                    } else {
-                      var weather = JSON.parse(body)
-                      msg +=""+ weather.result[0].Last + " BTC`**";
-                    }
-                    
-                    
-                      /*Send message*/
-                      bot.sendMessage({ //We're going to send a message!
-                            to : channelID,
-                            message : msg
+                    if(err){ console.log('error')} 
+                       else {
+                        var weather = JSON.parse(body)
+                        var change = weather.result.price.change.absolute.toString();
+                        var percent = (weather.result.price.change.percentage*100).toString();
+                        if( change.substring(0,1) == "-")
+                            msg+= "" + change.substring(0,1) + "$"+ change.substring(1,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```**"
+                        else
+                            msg+= "+" + "$"+ change.substring(0,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```**"
+                        
+                        /*Send message*/
+                        bot.sendMessage({ //We're going to send a message!
+                         to : channelID,
+                         message : msg
                         });
-                    deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
-                  }); //end thread 2
+                        deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
+                        }
+                    })
                 }
-
-           });//end thread 1
-           
+           })
+        }
+        
+        else if (command == "zec") {//If the user posts '!ping' we'll do something!
+            var msg = "**```diff\nZEC: ";
+           var url = 'https://api.cryptowat.ch/markets/bitfinex/zecusd/price';
+           request(url, function (err, response, body) {
+               if(err){ console.log('error')} 
+               else {
+                  var weather = JSON.parse(body)
+                  msg +="$"+ weather.result.price + " \n";
+                  
+                  /*Thread 2*/
+                  var url = 'https://api.cryptowat.ch/markets/bitfinex/zecusd/summary';
+                  request(url, function (err, response, body) {
+                    if(err){ console.log('error')} 
+                       else {
+                        var weather = JSON.parse(body)
+                        var change = weather.result.price.change.absolute.toString();
+                        var percent = (weather.result.price.change.percentage*100).toString();
+                        if( change.substring(0,1) == "-")
+                            msg+= "" + change.substring(0,1) + "$"+ change.substring(1,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```**"
+                        else
+                            msg+= "+" + "$"+ change.substring(0,7) + " (" + percent.substring(0,7)+ "%) - 24 HR\n```**"
+                        
+                        /*Send message*/
+                        bot.sendMessage({ //We're going to send a message!
+                         to : channelID,
+                         message : msg
+                        });
+                        deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
+                        }
+                    })
+                }
+           })
         }
         
         

@@ -5,7 +5,7 @@
   "main": "bot.js",
   "repository": "",
   "author": "Binh Tran <mo.eweda@gmail.com>",
-  "scripts": "nodemon bot.js",
+  "scripts" : { "start" : "node bot.js" },
   "dependencies": {
     "async": "~0.2.8",
     "babel": "^6.23.0",

@@ -6,7 +6,7 @@ var Discordie = require('discordie');
 const Events = Discordie.Events;
 const client = new Discordie();
 
-/*** API SHIT **/
+/*** APIs **/
 var request = require('request');
 var tokenfile = require('./tokeninfo.js');
 /*var _GDAX = require('./src/classes/GDAX');
@@ -829,8 +829,7 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
         else {
             var msg = "**```diff\n" + command.toUpperCase() + ": ";
             //console.log(argument.toUpperCase());
-           //var url =  'https://coinmarketcap-nexuist.rhcloud.com/api/' + command.toLowerCase();
-           var url =  'https://api.coinmarketcap.com/v1/ticker/' + command.toLowerCase();
+           var url =  'https://api.cryptonator.com/api/ticker/' + command.toLowerCase()+"-usd";
            request(url, function (err, response, body) {
                if(err)
                 throw err;
@@ -840,7 +839,8 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                     var data = JSON.parse(body);
                     
                 //Not Top 100 coin. -- Using cmc api
-
+               if(data.error || data == undefined){
+                  console.log(data.error)
                   //search coinmarketcap THREAD: 2
                   var url =  'https://api.coinmarketcap.com/v1/ticker/' + command.toLowerCase();
                   request(url, function (err, response, body) {
@@ -881,6 +881,27 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                         }
                    })
                     
+                    
+                } else {
+                  var weather = JSON.parse(body)
+                  var change = weather.ticker.change;
+                  //console.log(weather.price.usd)
+
+                  msg +="$"+ weather.ticker.price + "\n";
+                    if( change.substring(0,1) == "-")
+                        msg+= "-" + "(" + change.substring(1,7)+ "%) - 24 HR\n```**"
+                    else
+                        msg+= "+"  + "(" + change.substring(0,7)+ "%) - 24 HR\n```**";
+                            
+                           // weather.change + "%```**";
+                  
+                  bot.sendMessage({ //We're going to send a message!
+                        to : channelID,
+                        message : msg
+                    });
+                    
+                  deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
+                }
            })
         }
     }

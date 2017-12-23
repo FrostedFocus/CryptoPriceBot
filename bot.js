@@ -864,12 +864,6 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                           var change = weather.ticker.change;
                   //console.log(weather.price.usd)
 
-                          msg +="$"+ weather.ticker.price + "\n";
-                          if( change.substring(0,1) == "-")
-                              msg+= "-" + "(" + change.substring(1,7)+ "%) - 24 HR\n```**"
-                          else
-                               msg+= "+"  + "(" + change.substring(0,7)+ "%) - 24 HR\n```**";
-                            
                            // weather.change + "%```**";
                   
                           bot.sendMessage({ //We're going to send a message!

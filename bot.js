@@ -120,14 +120,14 @@ function deleteMsg2(channel_id, message_id){
     
 
     var botMessageID;
-    
+    console.log(channel_id);
     setTimeout(function(){
     bot.deleteMessage({
             channelID: channel_id,
             messageID: message_id
         });
     
-    if(channel_id != 335327431684653069)    
+    if(channel_id != 393875259344027650)    
     bot.getMessages({
                 channelID: channel_id, limit: 25}, function(error, message){
                     for(i in message)
@@ -841,30 +841,31 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                     
                 //Not Top 100 coin. -- Using cmc api
                if(data.error || data == undefined){
-                  console.log(data.error)
+                  console.log("no found on cmc!")
                   //search coinmarketcap THREAD: 2
                   var url =  'https://api.cryptonator.com/api/ticker/' + command.toLowerCase()+"-usd";
                   request(url, function (err, response, body) {
                       if(err)
                         throw err;
                         
+                        console.log("??" + body);
+                       //var msg = "**```diff\n" + command.toUpperCase() + ": ";
                        var data = JSON.parse(body);
                        //console.log(data);
-                       if(data.error || command.length < 3){
-                          //console.log(user)
+                       if(data.error){
                           console.log('error no entry' + command);
                           bot.sendMessage({ //We're going to send a message!
                                 to : channelID,
                                 message : "*Nothing Found*"
                             });
                           deleteMsg2(rawEvent.d.channel_id, rawEvent.d.id);
+                          
                         } else {
-                            
                           var weather = JSON.parse(body)
                           var change = weather.ticker.change;
-                  //console.log(weather.price.usd)
 
-                           // weather.change + "%```**";
+                          msg +="$"+ weather.ticker.price + "\n";
+                            msg+= "```**";
                   
                           bot.sendMessage({ //We're going to send a message!
                                 to : channelID,
@@ -882,7 +883,6 @@ bot.on("message", function (user, userID, channelID, message, rawEvent) {
                           var change = weather[0].percent_change_24h;
                           //console.log(weather.price.usd)
                           //redo message
-                          msg = "**```diff\n" + weather[0].symbol + ": ";
                           msg +="$"+ weather[0].price_usd + " / "+ weather[0].price_btc+" BTC\n";
                           
                           if( change.substring(0,1) == "-")
